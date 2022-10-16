@@ -73,7 +73,7 @@ const movieController = {
   },
   getAllMovie: async (req, res) => {
     try {
-      const movies = await Movie.find().populate(["comments", "ratings"]);;
+      const movies = await Movie.find();
       res.status(200).json(movies.reverse());
     } catch (error) {
       res.status(500).json(error);
@@ -81,7 +81,7 @@ const movieController = {
   },
   getAMovie: async (req, res) => {
     try {
-      const movie = await Movie.findById(req.params.id);
+      const movie = await Movie.findById(req.params.id).populate(["comments", "ratings"]);
       res.status(200).json(movie);
     } catch (error) {
       res.status(500).json(error);
