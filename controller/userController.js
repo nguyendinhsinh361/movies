@@ -88,6 +88,21 @@ const userController = {
       res.status(403).json("You can update only your account");
     }
   },
+
+  updateInfoByUser: async (req, res) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
   deleteUser: async (req, res) => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       try {

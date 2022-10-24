@@ -11,6 +11,8 @@ router.get("/find/:id", userController.getUser);
 router.post("/new", verify, userController.createUser);
 //Update User
 router.put("/:id", verify, userController.updateUser);
+//Update Info By User
+router.patch("/update-info", verify, userController.updateInfoByUser);
 //Delete User
 router.delete("/:id", verify, userController.deleteUser);
 //Get A User
